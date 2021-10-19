@@ -9,7 +9,8 @@ class Game
     def initialize(size)
         @board = Board.new(size)
         @player = HumanPlayer.new
-        @computer = ComputerPlayer.new
+        @size = size
+        @computer = ComputerPlayer.new(size)
     end
 
     # def get_guess
@@ -51,5 +52,5 @@ class Game
     end
 end
 
-game = Game.new(4)
-game.play
+# game = Game.new(4)
+# game.play
