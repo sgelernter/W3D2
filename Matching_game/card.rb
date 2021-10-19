@@ -1,7 +1,7 @@
 class Card
     attr_reader :value, :face_up, :card_back
-    def initialize
-        @value = rand(1..10)
+    def initialize(value)
+        @value = value
         @face_up = false
         @card_back = "_"
     end
