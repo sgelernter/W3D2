@@ -11,6 +11,11 @@ class Board
         @size = size
     end
 
+    def [](pos)
+        row, col = pos
+        @board[row][col]
+    end
+
     def build_deck
         total_pairs = (@size**2) / 2
         (0...total_pairs).each do |i|
@@ -31,22 +36,28 @@ class Board
         true
     end
 
-    # def [](pos)
-    #     row,col = pos
-    #     @board[row][col]
-    # end
-    
     def render
         (0...@size).each do |row|
             (0...@size).each do |col|
-                  @board[row][col].print_card
+                  print " #{@board[row][col].print_card} "
             end
             puts 
         end      
 
     end
 
-    
+    def won?
+        @board.flatten.all? {|card| card.face_up == true }
+    end
+
+    def reveal(pos)
+        row,col = pos
+        current_card = @board[row][col]
+        if !current_card.face_up
+            current_card.reveal
+            return current_card.value
+        end
+    end
 
 
 end
