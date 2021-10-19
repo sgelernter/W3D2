@@ -7,7 +7,7 @@ class ComputerPlayer
         @known_cards = Hash.new {|h,k| h[k] = []}
         @matched_cards = []
     end
-
+    
     def receive_revealed_card(pos,value)
         @known_cards[value] << pos if !@known_cards[value].include?(pos)
     end
