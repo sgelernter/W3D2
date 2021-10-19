@@ -28,6 +28,6 @@ class Card
         else
             print self.card_back
         end
-        true
+    
     end
 end

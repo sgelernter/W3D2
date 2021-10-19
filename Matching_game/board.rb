@@ -13,31 +13,40 @@ class Board
 
     def build_deck
         total_pairs = (@size**2) / 2
-        (0..total_pairs).each do |i|
+        (0...total_pairs).each do |i|
             @deck << Card.new(i)
             @deck << Card.new(i)
         end
     end
 
-    # def populate
+    def populate
+        shuffled = @deck.dup.shuffle
+        count = 0
+        (0...@size).each do |row|
+            (0...@size).each do |col|
+                @board[row][col] = shuffled[count]
+                count +=1
+            end
+        end
+        true
+    end
 
-
-    #     placed_pairs = 0
-    #     while placed_pairs < total_pairs 
-    #         # pair_1 = rand(0..total_pairs)
-    #         # pair_2 = pair_1
-    #         pair_value = rand(0..total_pairs)
-    #         card_1 = Card.new(pair_value)
-    #         card_2 = Card.new(pair_value)
-    #         row = rand(0...size)
-    #         col = rand(0...size)
-    #         if @board[row][col] == "_" && (@deck.count {|card| card == card_1 }) < 2
-    #             @board[row][col] = card_1
-    #             @deck << card_1
-    #         end 
-
-
-    #     end
+    # def [](pos)
+    #     row,col = pos
+    #     @board[row][col]
     # end
+    
+    def render
+        (0...@size).each do |row|
+            (0...@size).each do |col|
+                  @board[row][col].print_card
+            end
+            puts 
+        end      
+
+    end
+
+    
+
 
 end
